@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FMD Microplan</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>🐄 FMD Microplan</h1>
+  <p class="subtitle">
+    <span class="dot" id="liveDot"></span>
+    <span id="statusText">Connecting…</span>
+  </p>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search name, Aadhaar, mobile or ear tag..." autocomplete="off" disabled>
+    </div>
+    <button class="btn btn-outline" id="btnRefresh" onclick="refresh()" disabled>↻ Refresh</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat">Owners: <strong id="ownerCount">0</strong></div>
+    <div class="stat">Ear tags: <strong id="tagCount">0</strong></div>
+    <div class="stat">Showing: <strong id="showCount">0</strong></div>
+  </div>
+
+  <div class="table-container">
+    <div class="overlay-loading" id="tableLoading">
+      <span class="spinner" style="width:28px;height:28px;border-width:3px;border-top-color:var(--accent)"></span>
+      <span style="color:var(--muted);font-size:0.9rem">Loading from Google Sheet…</span>
+    </div>
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">Sl No</th>
+              <th>Owner Name</th>
+              <th>Aadhaar No</th>
+              <th>Mobile No</th>
+              <th>Ear Tag No</th>
+              <th style="width:130px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty" style="display:none">No records found</div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2 id="modalTitle">Edit</h2>
+    <p class="modal-owner" id="modalOwner"></p>
+    <div class="form-group" id="gAadhaar">
+      <label>Aadhaar No</label>
+      <input type="text" id="fAadhaar" inputmode="numeric" autocomplete="off">
+    </div>
+    <div class="form-group" id="gMobile">
+      <label>Mobile No</label>
+      <input type="text" id="fMobile" inputmode="numeric" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label>Ear Tag No</label>
+      <input type="text" id="fTag" inputmode="numeric" autocomplete="off">
+    </div>
+    <label class="check" id="gCopy"><input type="checkbox" id="fCopy" checked> Also copy animal count (cattle/buffalo/calf) from the previous tag</label>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" id="saveBtn" onclick="saveItem()">Update Sheet</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
