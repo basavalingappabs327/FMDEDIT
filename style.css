@@ -67,7 +67,7 @@ h1 {
   padding: 0.7rem 1rem 0.7rem 2.5rem;
   border-radius: 10px;
   border: 2px solid #dc2626 !important; /* Thicker, visible red border */
-  background: #450a0a !important;       /* Dark red background */
+  background: transparent 
   color: var(--text);
   font-size: 0.95rem;
   outline: none;
