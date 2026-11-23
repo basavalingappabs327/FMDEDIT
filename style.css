@@ -57,17 +57,20 @@ h1 {
 }
 
 .search-box {
-  flex: 1;
+  flex: 1 1 100%;        /* Forces full row width inside a flex .toolbar */
+  width: 100%;           /* Forces full width inside a normal block div */
   min-width: 200px;
   position: relative;
 }
 
 .search-box input {
-  width: 100%;
+  display: block;        /* Ensures width: 100% is strictly respected */
+  width: 100% !important;
+  max-width: 100%;
   padding: 0.7rem 1rem 0.7rem 2.5rem;
   border-radius: 10px;
-  border: 2px solid #dc2626 !important; /* Thicker, visible red border */
-  background: transparent 
+  border: 2px solid #dc2626 !important;
+  background: transparent !important;
   color: var(--text);
   font-size: 0.95rem;
   outline: none;
@@ -75,9 +78,8 @@ h1 {
 
 .search-box input:focus { 
   border-color: #f87171 !important;
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25); /* Subtle red glow */
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
 }
-
 .search-box::before {
   content: "🔍";
   position: absolute;
